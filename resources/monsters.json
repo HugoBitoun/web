@@ -1,0 +1,30 @@
+[
+    {
+        "name": "Infernaltree",
+        "life": "100",
+        "strength": "10",
+        "type": "Hi! I'm Infernaltree.",
+        "filename": "infernaltree.png"
+    },
+    {
+        "name": "Toxinscream",
+        "life": "200",
+        "strength": "20",
+        "type": "Hi! I'm Toxinscream.",
+        "filename": "toxinscream.png"
+    },
+    {
+        "name": "Acidpaw",
+        "life": "250",
+        "strength": "25",
+        "type": "Hi! I'm Acidpaw.",
+        "filename": "acidpaw.png"
+    },
+    {
+        "name": "Barbling",
+        "life": "4000",
+        "strength": "100",
+        "type": "Hi! I'm Barbling.",
+        "filename": "barbling.png"
+    }
+]
