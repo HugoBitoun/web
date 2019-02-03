@@ -1,9 +1,25 @@
 <?php
 
 require __DIR__ . '/functions.php';
+require __DIR__ . '/delete.php';
+
 
 $monsters = getMonsters();
+if(isset($_POST["Valider"])){
 
+    try {
+        $bdd = new PDO('mysql:host=localhost;dbname=WebMiage;charset=utf8','root','');
+    } catch (Exception $e) {
+      die('Erreur : ' . $e->getMessage());
+    }
+    
+    $Strength = $_GET['NewStrength'];
+    $Life = $_GET['NewLife'];
+    $Type = $_GET['NewType'];
+    $req = $bdd->query("UPDATE `monsters` SET `Strength` = ".$Strength.", `Life` = ".$Life.", `Type` = ".$Type." WHERE `monsters`.`Name` ='".$name."'");
+    header('Location: index.php');
+    die;
+}
 ?>
 
 <!DOCTYPE html>
@@ -62,6 +78,20 @@ $monsters = getMonsters();
                             <td><?php echo $monster->strength; ?></td>
                             <td><?php echo $monster->life; ?></td>
                             <td><?php echo $monster->type; ?></td>
+                            <td>
+                              <form class="" action="Modifier.php" method="POST">
+                              	<input type="hidden" name="Strength" value="<?php echo $monster->strength;?>">
+                                <input type="submit" name="Modifier" value="Modifier">
+                                <input type="hidden" name="name" value="<?php echo $monster->name;?>">
+                                
+                                <input type="hidden" name="Life" value="<?php echo $monster->life;?>">
+                                <input type="hidden" name="Type" value="<?php echo $monster->type;?>">
+                              </form>
+                              <form class="" action="delete.php" method="POST">
+                                <input type="submit" name="Supprimer" value="Supprimer">
+                                <input type="hidden" name="name" value="<?php echo $monster->name;?>">
+                              </form>
+                            </td>
                         </tr>
                     <?php } ?>
                 </tbody>
