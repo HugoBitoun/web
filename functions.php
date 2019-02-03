@@ -4,9 +4,9 @@ require 'monster.php';
 
 function getMonsters()
 {
-  $json = json_decode(file_get_contents('resources/monsters.json',true));
+
   try {
-      $bdd = new PDO('mysql:host=localhost;dbname=WebMiage;charset=utf8', 'root', 'root');
+      $bdd = new PDO('mysql:host=localhost;dbname=WebMiage;charset=utf8','root','25.Mars.97');
   } catch (Exception $e) {
     die('Erreur : ' . $e->getMessage());
   }
@@ -20,6 +20,7 @@ function getMonsters()
   return $monsterAux;
 }
 
+
 /**
  * Our complex fighting algorithm!
  *
@@ -27,6 +28,7 @@ function getMonsters()
  */
 function fight(Monster $firstMonster, Monster $secondMonster)
 {
+
     $firstMonsterLife = $firstMonster->life;
     $secondMonsterLife = $secondMonster->life;
 

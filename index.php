@@ -1,6 +1,7 @@
 <?php
 
 require __DIR__ . '/functions.php';
+require __DIR__ . '/delete.php';
 
 $monsters = getMonsters();
 
@@ -62,6 +63,12 @@ $monsters = getMonsters();
                             <td><?php echo $monster->strength; ?></td>
                             <td><?php echo $monster->life; ?></td>
                             <td><?php echo $monster->type; ?></td>
+                            <td>
+                              <form class="" action="delete.php" method="POST">
+                                <input type="submit" name="Supprimer" value="Supprimer">
+                                <input type="hidden" name="name" value="<?php echo $monster->name;?>">
+                              </form>
+                            </td>
                         </tr>
                     <?php } ?>
                 </tbody>
