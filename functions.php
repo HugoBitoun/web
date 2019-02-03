@@ -5,11 +5,18 @@ require 'monster.php';
 function getMonsters()
 {
   $json = json_decode(file_get_contents('resources/monsters.json',true));
-   foreach ($json as $monster) {
-    $monsterTemp = new Monster($monster->name,$monster->strength, $monster->life,$monster->type);
-    echo $monsterTemp->name;
+  try {
+      $bdd = new PDO('mysql:host=localhost;dbname=WebMiage;charset=utf8', 'root', 'root');
+  } catch (Exception $e) {
+    die('Erreur : ' . $e->getMessage());
+  }
+
+  $req = $bdd->query('SELECT * FROM Monsters');
+  while ($donnees = $req->fetch()) {
+    $monsterTemp = new Monster($donnees['Name'],$donnees['Strength'], $donnees['Life'],$donnees['Type']);
     $monsterAux[] = $monsterTemp;
   }
+
   return $monsterAux;
 }
 
