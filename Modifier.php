@@ -23,7 +23,8 @@ if(isset($_POST["Valider"])){
     $S = $_POST["NewStrength"];
     $L = $_POST["NewLife"];
     $T = $_POST["NewType"];
-    $req = $bdd->query("UPDATE `monsters` SET `Strength` = ".$S.", `Life` = ".$L.", `Type` = '".$T."' WHERE `monsters`.`Name` ='".$N."'");
+    $sql = "UPDATE Monsters SET Life = '".$L."', Strength = '".$S."', Type = '".$T."' WHERE Monsters.`Name` = '".$N."'";
+    $req = $bdd->query($sql);
     header('Location: index.php');
     die;
 }
@@ -76,7 +77,7 @@ if(isset($_POST["Valider"])){
                 <tbody>
                 <tr>
                 <form class="" action="Modifier.php" method="POST">
-                        <td><?php echo $name ?></td>
+                        <td><?php echo $name ?><input type="hidden" name="name" value="<?php echo $name ?>"></td>
                         <td><input  type="text" name="NewStrength" maxlength="50" size="30"></td>
                         <td><input  type="text" name="NewLife" maxlength="50" size="30"></td>
                         <td><input  type="text" name="NewType" maxlength="50" size="30"></td>
@@ -85,7 +86,6 @@ if(isset($_POST["Valider"])){
                 </tr>
                 </tbody>
             </table>
-        </div>       
+        </div>
     </body>
 </html>
-
